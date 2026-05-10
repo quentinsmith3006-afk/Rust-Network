@@ -1,0 +1,11 @@
+use std::net;
+use std::io::*;
+
+fn main() {
+    if let Ok(mut stream) = net::TcpStream::connect("127.0.0.1:9000") {
+       println!("Connected to the server!");
+
+       let buffer: &[u8] = &[41, 42, 43, 44];
+       stream.write_all(buffer);
+    }
+}
