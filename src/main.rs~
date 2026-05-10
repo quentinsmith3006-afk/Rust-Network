@@ -1,0 +1,19 @@
+use std::net;
+use std::io;
+use std::io::Read;
+
+fn main() -> io::Result<()> {
+   let socket = net::TcpListener::bind("127.0.0.1:9000")?;
+
+   if let Ok((mut tcpstream, sockaddr)) = socket.accept() {
+      println!("Connected");
+
+      let mut st = String::new();
+      tcpstream.read_to_string(&mut st);
+
+      println!("{st}");
+   }
+ 
+
+   Ok(())
+}
